@@ -27,7 +27,7 @@ merged_data<- merge(x= Equinor, y=Norsk_Hydro, by= "quote_date", all.x= T)
 ```
 
 ## PLOTTING
-```{r}
+```{r, x.lab=Date, y.lab=Value}
 
 ggplot2::ggplot(data=merged_data, aes(x=quote_date, y=close.x, close.y))+
   geom_line(color = "#00AFBB")
