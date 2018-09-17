@@ -1,0 +1,2 @@
+# Reading-static
+Øvelse
