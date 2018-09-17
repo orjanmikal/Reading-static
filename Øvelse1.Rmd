@@ -6,7 +6,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 library(tidyr)
 library(dplyr)
 library(tidyverse)
@@ -27,7 +27,7 @@ merged_data<- merge(x= Equinor, y=Norsk_Hydro, by= "quote_date", all.x= T)
 ```
 
 ## PLOTTING
-```{r, x.lab=Date, y.lab=Value}
+```{r}
 
 ggplot2::ggplot(data=merged_data, aes(x=quote_date, y=close.x, close.y))+
   geom_line(color = "#00AFBB")
@@ -37,7 +37,8 @@ ggplot2::ggplot(data=merged_data, aes(x=quote_date, y=close.y))+
 
 ggplot2::ggplot(data=merged_data, aes(x=quote_date)) + 
         geom_line(aes(y=close.x, color ="#00AFBB")) +
-        geom_line(aes(y=close.y, color ="#FC4E07"))
+        geom_line(aes(y=close.y, color ="#FC4E07")) +
+        xlab("Date") + ylab("Value")
 
 
 ```
