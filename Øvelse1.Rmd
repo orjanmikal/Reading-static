@@ -1,0 +1,45 @@
+---
+title: "Untitled"
+author: "Ørjan Mikal Antonsen"
+date: "17 september 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyr)
+library(dplyr)
+library(tidyverse)
+library(readr)
+```
+
+```{r, warning=FALSE}
+
+Equinor <- read_csv("https://www.netfonds.no/quotes/paperhistory.php?paper=EQNR.OSE&csv_format=csv",
+    col_types = cols(quote_date = col_date(format = "%Y%m%d")))
+
+Norsk_Hydro <- read_csv("https://www.netfonds.no/quotes/paperhistory.php?paper=NHY.OSE&csv_format=csv", 
+    col_types = cols(quote_date = col_date(format = "%Y%m%d")))
+
+merged_data<- merge(x= Equinor, y=Norsk_Hydro, by= "quote_date", all.x= T)
+
+
+```
+
+## PLOTTING
+```{r}
+
+ggplot2::ggplot(data=merged_data, aes(x=quote_date, y=close.x, close.y))+
+  geom_line(color = "#00AFBB")
+
+ggplot2::ggplot(data=merged_data, aes(x=quote_date, y=close.y))+
+  geom_line(color = "#FC4E07")
+
+ggplot2::ggplot(data=merged_data, aes(x=quote_date)) + 
+        geom_line(aes(y=close.x, color ="#00AFBB")) +
+        geom_line(aes(y=close.y, color ="#FC4E07"))
+
+
+```
+
+
